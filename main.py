@@ -21,9 +21,9 @@ mainClock = pygame.time.Clock()
 fps_font = pygame.font.SysFont("coopbl", 22)
 
 # Music ----------------------------------------------------------- #
-pygame.mixer.music.load("Assets/Sounds/Komiku_-_12_-_Bicycle.mp3")
-pygame.mixer.music.set_volume(MUSIC_VOLUME)
-pygame.mixer.music.play(-1)
+# pygame.mixer.music.load("Assets/Sounds/Komiku - Opening !.mp3")
+# pygame.mixer.music.set_volume(MUSIC_VOLUME)
+# pygame.mixer.music.play(-1)
 # Variables ------------------------------------------------------- #
 state = "menu"
 
@@ -50,10 +50,22 @@ def update():
     global state
     if state == "menu":
         if menu.update() == "game":
-            game.reset() # reset the game to start a new game
+            # Transition to game: change music
+            # pygame.mixer.music.load("Assets/Sounds/Komiku_-_12_-_Bicycle.mp3")  # Back to menu music
+            # pygame.mixer.music.set_volume(MUSIC_VOLUME)
+            # pygame.mixer.music.play(-1)
+            
+            game.reset()  # reset the game to start a new game
             state = "game"
+    
     elif state == "game":
         if game.update() == "menu":
+            # Transition to menu: change music
+            # pygame.mixer.music.stop()
+            # pygame.mixer.music.load("Assets/Sounds/Komiku_-_12_-_Bicycle.mp3")  # Back to menu music
+            # pygame.mixer.music.set_volume(MUSIC_VOLUME)
+            # pygame.mixer.music.play(-1)
+            
             state = "menu"
     pygame.display.update()
     mainClock.tick(FPS)

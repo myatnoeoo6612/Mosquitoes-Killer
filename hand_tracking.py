@@ -46,12 +46,22 @@ class HandTracking:
                 if y1 > y:
                     self.hand_closed = True
 
-                mp_drawing.draw_landmarks(
-                    image,
-                    hand_landmarks,
-                    mp_hands.HAND_CONNECTIONS,
-                    mp_drawing_styles.get_default_hand_landmarks_style(),
-                    mp_drawing_styles.get_default_hand_connections_style())
+                # mp_drawing.draw_landmarks(
+                #     image,
+                #     hand_landmarks,
+                #     mp_hands.HAND_CONNECTIONS,
+                #     mp_drawing_styles.get_default_hand_landmarks_style(),
+                #     mp_drawing_styles.get_default_hand_connections_style())
+                point9_x = int(x * cols)
+                point9_y = int(y * rows)
+                point12_x = int(x1 * cols)
+                point12_y = int(y1 * rows)
+
+            # Draw blue point for landmark 9
+                cv2.circle(image, (point9_x, point9_y), 12, (255, 0, 0), -1)
+            # Draw red point for landmark 12
+                cv2.circle(image, (point12_x, point12_y), 12, (0, 0, 255), -1)
+
         return image
 
     def get_hand_center(self):
@@ -65,5 +75,7 @@ class HandTracking:
     def is_hand_closed(self):
 
         pass
+
+
 
 
